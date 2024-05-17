@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #FFF8D8;
+}
+
+.titulo {
+    color:#AF0404;
+    width: 410px;
+    font-weight: 500px;
+    font-family:'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    
+
+}
+
+
+.titulo2 {
+    color:#AF0404;
+    width: fit-content;
+    font-weight:700;
+    font-family:'Times New Roman', Times, serif;
+    font-style: bold;
+   
+
+}
+
+.navbar {
+    width: 592px;
+    color: #AF0404;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.header {
+border-bottom:5px solid #000000 ;
+
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    background-image: url(./image-removebg-preview.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 70px;
+    display: flex;
+}
+
+.button1 {
+    background-color: #AF0404;
+    color: white;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+   
+
+
+}
+
+.button2 {
+    background-color: #000000b5;
+    color: white;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+   
+}
+
+.b1 {
+    background-color: #AF0404;
+    color: white;
+    width: 1492px;
+    height: 520px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .b2{
+    background-color: #FFF8D8;
+    width: 440px;
+    height: 455px;
+    display: flex;
+    float: inline-end;
+    margin-right: 5%;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: solid black;
+  }
+
+  .imagem{
+    background-image: url(./coração.PNG);
+    width: 440px;
+    height: 453px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .efeito{ animation: pulse 2s infinite;}
+  @keyframes pulse {
+    0%, 100% {transform: scale(0.5,0.5);}
+    50% {transform: scale(1);}
+  }
+
+
+  .titulo3 {
+    color:#FFF8D8;
+    width: fit-content;
+    font-weight:700;
+    font-family:'Times New Roman', Times, serif;
+    font-style: bold;
+    margin-left: 5%;
+   
+
+}
+
+.titulo4 {
+    color:#FFF8D8;
+    width: fit-content;
+    font-weight:700;
+    font-family:'Times New Roman', Times, serif;
+    margin-left: -12%;
+    margin-top: 10%;
+    width: 811px;
+
+
+}
+
+
+
+.titulo5 {
+    color:#AF0404;
+    width: fit-content;
+    font-weight:700;
+    font-family:'Times New Roman', Times, serif;
+    font-style: bold;
+    margin-left: 5%;
+   
+
+}
