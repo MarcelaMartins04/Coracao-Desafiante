@@ -1,0 +1,64 @@
+
+
+#quiz-container {
+    max-width: 600px;
+    padding: 100px;
+    background-color: #fff8d8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 200px;
+    margin-top: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px white;
+}
+.question {
+    margin-bottom: 20px;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+}
+.options button {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #AF0404;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+}
+.options button:hover {
+    background-color: black;
+    
+}
+
+h3 {
+    text-align:justify;
+}
+
+.canvas-container {
+    width: 300px;  /* Ajuste a largura conforme necessário */
+    height: 300px; /* Ajuste a altura conforme necessário */
+    margin: 20px auto; /* Centraliza o gráfico horizontalmente */
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#myChart {
+    width: 200px; /* Defina a largura desejada */
+    height: 200px; /* Defina a altura desejada */
+}
+
+#detailed-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 400px;
+}
+
+#detailed-chart {
+    width: 100%;
+    height: 100%;
+}

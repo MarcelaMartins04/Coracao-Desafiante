@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora do Amor</title>
+
+    <link rel="stylesheet" href="../css/calculadora-do-amor.css">
+    <link rel="stylesheet" href="./../css/dashboards.css">
+   
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao()" style="background-color: #AF0404;">
+
+    <div class="janela">
+
+
+        <div class="header-left">
+
+            <h1>CALCULADORA DO AMOR</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!  <br> Se divirta calculando suas compatibilidades amorosas! E não se esqueça de ver seu histórico geral e estatísticas na área "Gráficos". </h3>
+            </div>
+
+            <div class="btn-nav">
+                <a href="mural.html">
+                    <h3>Compatibilidade</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="./edicao-aviso.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="./dashboard.html">
+                    <h3>Voltar</h3>
+                </a>
+            </div>
+
+            <a href="../index.html">
+                <div class="btn-logout" onclick="limparSessao()">
+                    <h3>Sair</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="container">
+            <h1>Calculadora do Amor</h1>
+            <input type="text" placeholder="Insira seu nome" id="input_nome1">
+            <input type="text" placeholder="Insira o nome da pessoa" id="input_nome2">
+            <button onclick="calcular()" class="calcular-btn">Calcular</button>
+            <button onclick="limpar()">Limpar</button>
+            <div class="resultado" id="div_msg"></div>
+
+            <div id="historico" class="historico">
+            <ul id="historico-lista">
+        </div>
+
+        
+
+</body>
+
+</html>
+
+<script>
+
+    var historico = [];
+
+    function calcular() {
+        var nome1 = input_nome1.value;
+        var nome2 = input_nome2.value;
+
+        // Verifica se os campos estão vazios
+        if (nome1 === "" || nome2 === "") {
+            div_msg.innerHTML = `Por favor, preencha ambos os nomes.`;
+            return;
+        }
+
+        // Verifica se o cálculo já foi feito para o par de nomes
+        if (localStorage.getItem(nome1) === nome2) {
+            div_msg.innerHTML = `Você já calculou a compatibilidade com ${nome2}. Escolha outro par.`;
+            return;
+        }
+
+        // Armazena o par de nomes para evitar cálculos repetidos
+        localStorage.setItem(nome1, nome2);
+
+        // Gera a compatibilidade de forma aleatória
+        var compatibilidade = Math.floor(Math.random() * 101);
+
+         // JSON -> Cria um objeto com os dados da compatibilidade
+        var resultado = {
+            nome1: nome1,
+            nome2: nome2,
+            compatibilidade: compatibilidade
+        };
+
+        historico.push(resultado);
+
+        // rotas inserir banco
+        console.log("lalala")
+        fetch("/calculado/ultimas/inserirdados", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome1Server: nome1,
+        nome2Server: nome2,
+        compatibilidadeServer: compatibilidade,
+        idUsuarioServer: sessionStorage.getItem("ID_USUARIO")
+      }),
+    }) .then(function (resposta) {
+       resposta.json().then(function(res){
+        console.log("resposta: ", res);
+       })
+    })
+
+        div_msg.innerHTML = `<br>${nome1} e ${nome2} têm ${compatibilidade}% de compatibilidade de amor!!!`;
+
+        atualizarHistorico();
+       
+
+    }
+
+    function limpar() {
+        // Limpa os campos de entrada e a mensagem de resultado
+        input_nome1.value = "";
+        input_nome2.value = "";
+        div_msg.innerHTML = "";
+
+      
+    }
+
+
+    function atualizarHistorico() {
+        var historicoHtml = "<h2>Histórico atual de Compatibilidades:</h2>";
+        if (historico.length === 0) {
+            historicoHtml += "<p>Ainda não há registros no histórico.</p>";
+        } else {
+            historicoHtml += "<ul>";
+            // Itera sobre o histórico e adiciona cada registro à lista
+            for (var i = 0; i < historico.length; i++) {
+                historicoHtml += `<li>${historico[i].nome1} e ${historico[i].nome2}: ${historico[i].compatibilidade}%</li>`;
+            }
+            historicoHtml += "</ul>";
+        }
+        // Atualiza o conteúdo do elemento div_msg com o histórico
+       div_msg.innerHTML += historicoHtml;
+    }
+</script>

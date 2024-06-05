@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora do amor</title>
+    <link rel="stylesheet" href="./css/calculadora-do-amor.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora do Amor</h1>
+        <input type="text" placeholder="Insira seu nome" id="input_nome1">
+        <input type="text" placeholder="Insira o nome da pessoa" id="input_nome2">
+        <button onclick="calcular()" class="calcular-btn">Calcular</button>
+        <button onclick="limpar()">Limpar</button>
+        <div class="resultado" id="div_msg"></div>
+       
+    </div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var nome1 = input_nome1.value;
+        var nome2 = input_nome2.value;
+
+        // Verifica se os campos estão vazios
+        if (nome1 === "" || nome2 === "" ) {
+            div_msg.innerHTML = `Por favor, preencha ambos os nomes.`;
+            return;
+        }
+
+        // Verifica se o cálculo já foi feito para o par de nomes
+        if (localStorage.getItem(nome1) === nome2) {
+            div_msg.innerHTML = `Você já calculou a compatibilidade com ${nome2}. Escolha outro par.`;
+            return;
+        }
+
+        // Armazena o par de nomes para evitar cálculos repetidos
+        localStorage.setItem(nome1, nome2);
+
+        // Gera a compatibilidade de forma aleatória
+        var compatibilidade = Math.floor(Math.random() * 101);
+        div_msg.innerHTML = `<br>${nome1} e ${nome2} têm ${compatibilidade}% de compatibilidade de amor!!!`;
+    }
+
+    function limpar(){
+        // Limpa os campos de entrada e a mensagem de resultado
+        input_nome1.value = "";
+        input_nome2.value = "";
+        div_msg.innerHTML = "";
+    }
+
+    document.querySelector('.calcular-btn').classList.add('active');
+
+
+setTimeout(function() {
+    document.querySelector('.calcular-btn').classList.remove('active');
+}, 1000);
+</script>
